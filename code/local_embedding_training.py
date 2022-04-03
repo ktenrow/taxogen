@@ -126,7 +126,17 @@ def run_word2vec(pd_map, docs, cates, folder):
         print(output_f)
         # embed_proc = subprocess.Popen(["./word2vec", "-threads", "20", "-train", input_f, "-output", output_f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         # embed_proc.wait()
-        subprocess.call(["./word2vec", "-threads", "20", "-train", input_f, "-output", output_f])
+        w2v_bin = ""
+        for bin_f in ["./word2vec", "./word2vec.exe"]:
+            if os.path.isfile(bin_f):
+               w2v_bin = bin_f
+               break
+
+        if w2v_bin:
+            subprocess.call([w2v_bin, "-threads", "20", "-train", input_f, "-output", output_f])
+        else:
+            print('[Local-embedding] compile word2vec')
+            raise Exception("word2vec not found")
         print('[Local-embedding] done training word2vec')
 
 
