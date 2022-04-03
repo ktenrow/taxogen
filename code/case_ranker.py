@@ -14,7 +14,7 @@ def read_caseolap_result(case_file):
     cell_map = {}
 
     cell_cnt = 0
-    with open(case_file) as f:
+    with open(case_file, encoding="utf-8") as f:
         for line in f:
             cell_cnt += 1
             segments = line.strip('\r\n ').split('\t')
@@ -55,12 +55,12 @@ def rank_phrase(case_file):
 
 
 def write_keywords(o_file, ranked_list, thres):
-    with open(o_file, 'w+') as g:
+    with open(o_file, 'w+', encoding="utf-8") as g:
         for ph in ranked_list:
             if ph[1] > thres:
                 g.write('%s\n' % (ph[0]))
     tmp_file = o_file + '-score.txt'
-    with open(tmp_file, 'w+') as g:
+    with open(tmp_file, 'w+', encoding="utf-8") as g:
         for ph in ranked_list:
             g.write('%s\t%f\n' % (ph[0], ph[1]))
 

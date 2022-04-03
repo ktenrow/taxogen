@@ -60,7 +60,7 @@ if __name__ == "__main__":
     N = int(args.N)
     
     query_terms = []
-    data = open(args.query)
+    data = open(args.query, encoding="utf-8")
     for line in data:
         queries = line.strip().split("#")
         for term in queries:
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     for term in query_terms:
         relevant_dict[term] = []
         print("%s/%s" % (args.relevant, term))
-        data = open("%s/%s" % (args.relevant, term))
+        data = open("%s/%s" % (args.relevant, term), encoding="utf-8")
         print(term) 
         for line in data:
             values = line.strip().split()
@@ -83,8 +83,8 @@ if __name__ == "__main__":
         
     # read paper-term 
     term_paper_map = dict()
-    data = open("%s/paper_term.net" % args.input)
-    #data = open("./paper_term.net")
+    data = open("%s/paper_term.net" % args.input, encoding="utf-8")
+    #data = open("./paper_term.net", encoding="utf-8")
     for line in data:
         value = line.split()
         term, paper = value[1], int(value[0])
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         term_paper_map[term].add(paper)
     print("Finish reading paper_term.net")
 
-    data = open(args.query)
+    data = open(args.query, encoding="utf-8")
     for line in data:
         queries = line.strip().split("#")
         paper_set = None 
@@ -115,9 +115,9 @@ if __name__ == "__main__":
         path = "%s/%s" % (args.output, "_".join(queries))
         if not os.path.isdir(path):
             os.system("mkdir %s/%s" % (args.output, "_".join(queries)))
-        fout = open("%s/%s/text" % (args.output, "_".join(queries)), "w")
-        fout_2 = open("%s/%s/pid_text" % (args.output, "_".join(queries)), "w")
-        data = open(args.text)
+        fout = open("%s/%s/text" % (args.output, "_".join(queries)), "w", encoding="utf-8")
+        fout_2 = open("%s/%s/pid_text" % (args.output, "_".join(queries)), "w", encoding="utf-8")
+        data = open(args.text, encoding="utf-8")
         index = 0
         for line in data:
             if index in paper_set:

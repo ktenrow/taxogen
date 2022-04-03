@@ -6,7 +6,7 @@ def load_embeddings(embedding_file):
 	if embedding_file is None:
 		return {}
 	word_to_vec = {}
-	with open(embedding_file, 'r') as fin:
+	with open(embedding_file, 'r', encoding="utf-8") as fin:
 		header = fin.readline()
 		for line in fin:
 			items = line.strip().split()
@@ -155,7 +155,7 @@ def avg_emb(ele_map, embs_from, vec_size):
 def load_hier_f(hier_f):
 	hier_map = {}
 
-	with open(hier_f) as f:
+	with open(hier_f, encoding="utf-8") as f:
 		idx = 0
 		for line in f:
 			topic = line.split()[0]

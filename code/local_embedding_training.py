@@ -19,7 +19,7 @@ def read_files(folder, parent):
     keywords = set()
     cates = {}
 
-    with open(keyword_file) as f:
+    with open(keyword_file, encoding="utf-8") as f:
         for line in f:
             keywords.add(line.strip('\r\n'))
 
@@ -29,7 +29,7 @@ def read_files(folder, parent):
             tmp_embs[k] = embs[k]
     embs = tmp_embs
 
-    with open(hier_file) as f:
+    with open(hier_file, encoding="utf-8") as f:
         for line in f:
             segs = line.strip('\r\n').split(' ')
             if segs[1] == parent:
@@ -79,12 +79,12 @@ def revevant_docs(text, reidx, cates):
         for ph in cates[cate]:
             pd_map[ph] = set()
 
-    with open(text) as f:
+    with open(text, encoding="utf-8") as f:
         for line in f:
             docs[idx] = line
             idx += 1
 
-    with open(reidx) as f:
+    with open(reidx, encoding="utf-8") as f:
         for line in f:
             segments = line.strip('\r\n').split('\t')
             doc_ids = segments[1].split(',')
@@ -117,7 +117,7 @@ def run_word2vec(pd_map, docs, cates, folder):
         output_f = sub_folder + 'embeddings.txt'
         if not os.path.exists(sub_folder):
             os.makedirs(sub_folder)
-        with open(input_f, 'w+') as g:
+        with open(input_f, 'w+', encoding="utf-8") as g:
             for d in c_docs:
                 g.write(docs[d])
 

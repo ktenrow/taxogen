@@ -197,7 +197,7 @@ def read_data(label_f, link_f):
   docs = set()
   phrases = set()
 
-  with open(label_f, 'r+') as f:
+  with open(label_f, 'r+', encoding="utf-8") as f:
     for line in f:
       segments = line.strip('\n\r').split('\t')
       cell = segments[1]
@@ -209,7 +209,7 @@ def read_data(label_f, link_f):
 
   print('[CaseOLAP] Read document cluster membership file done.')
 
-  with open(link_f, 'r+') as f:
+  with open(link_f, 'r+', encoding="utf-8") as f:
     for line in f:
       segments = line.strip('\n\r ').split('\t')
       doc_id = segments[0]
@@ -235,7 +235,7 @@ def read_target_tokens(token_f):
   '''
 
   tokens = set()
-  with open(token_f, 'r+') as f:
+  with open(token_f, 'r+', encoding="utf-8") as f:
     for line in f:
       segments = line.strip('\r\n ').split('\t')
       tokens.add(segments[1])
@@ -245,7 +245,7 @@ def read_target_tokens(token_f):
 
 
 def run_caseolap(cells, freq_data, target_phs, o_file, verbose=3, top_k=200):
-  of = open(o_file, 'w+')
+  of = open(o_file, 'w+', encoding="utf-8")
 
   for cell in cells:
     print(('[CaseOLAP] Running CaseOLAP for cell: %s' % cell))

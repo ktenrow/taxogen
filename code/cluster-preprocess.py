@@ -16,21 +16,21 @@ def trim_keywords(raw_keyword_file, keyword_file, embedding_file):
     '''
     keywords = load_keywords(raw_keyword_file)
     embedded_keywords = load_embedding_keywords(embedding_file)
-    with open(keyword_file, 'w') as fout:
+    with open(keyword_file, 'w', encoding="utf-8") as fout:
         for w in keywords:
             if w in embedded_keywords:
                 fout.write(w + '\n')
 
 def load_keywords(seed_word_file):
     seed_words = []
-    with open(seed_word_file, 'r') as fin:
+    with open(seed_word_file, 'r', encoding="utf-8") as fin:
         for line in fin:
             seed_words.append(line.strip())
     return seed_words
 
 def load_embedding_keywords(embedding_file):
     keyword_set = set()
-    with open(embedding_file, 'r') as fin:
+    with open(embedding_file, 'r', encoding="utf-8") as fin:
         header = fin.readline()
         for line in fin:
             items = line.strip().split()
@@ -48,7 +48,7 @@ def trim_document_set(raw_doc_file, doc_file, keyword_file):
     :return:
     '''
     keyword_set = set(load_keywords(keyword_file))
-    with open(raw_doc_file, 'r') as fin, open(doc_file, 'w') as fout:
+    with open(raw_doc_file, 'r', encoding="utf-8") as fin, open(doc_file, 'w', encoding="utf-8") as fout:
         for line in fin:
             doc = line.strip().split()
             if check_doc_contain_keyword(doc, keyword_set):
@@ -70,7 +70,7 @@ def check_doc_contain_keyword(doc, keyword_set):
 
 def gen_doc_keyword_cnt_file(doc_file, keyword_cnt_file):
     documents = []
-    with open(doc_file, 'r') as fin:
+    with open(doc_file, 'r', encoding="utf-8") as fin:
         for line in fin:
             keywords = line.strip().split()
             documents.append(keywords)
@@ -79,7 +79,7 @@ def gen_doc_keyword_cnt_file(doc_file, keyword_cnt_file):
         c = Counter(d)
         doc_word_counts.append(c)
 
-    with open(keyword_cnt_file, 'w') as fout:
+    with open(keyword_cnt_file, 'w', encoding="utf-8") as fout:
         for i, counter in enumerate(doc_word_counts):
             counter_string = counter_to_string(counter)
             fout.write(str(i) + '\t' + counter_string + '\n')
@@ -95,7 +95,7 @@ def counter_to_string(counter):
 
 def gen_doc_ids(input_file, output_file):
     doc_id = 0
-    with open(input_file, 'r') as fin, open(output_file, 'w') as fout:
+    with open(input_file, 'r', encoding="utf-8") as fin, open(output_file, 'w', encoding="utf-8") as fout:
         for line in fin:
             fout.write(str(doc_id)+"\n")
             doc_id += 1

@@ -4,7 +4,7 @@ from collections import defaultdict
 class yaml_loader:
     def load(self, para_file):
         yaml.add_constructor('!join', self._concat)
-        fin = open(para_file, 'r')
+        fin = open(para_file, 'r', encoding="utf-8")
         # using default dict: if the key is not specified, the values is None
         return defaultdict(lambda: None, yaml.load(fin))
     def _concat(self, loader, node):

@@ -14,8 +14,8 @@ def gen_intrusion_pairs(tax, N, case_N):
 
 	pairs = {}
 
-	# exp_file = open('%s_exp' % intru_f, 'w+')
-	# gold_file = open('%s_gold' % intru_f, 'w+')
+	# exp_file = open('%s_exp' % intru_f, 'w+', encoding="utf-8")
+	# gold_file = open('%s_gold' % intru_f, 'w+', encoding="utf-8")
 
 	while cnt < case_N:
 		node = tax.sample_a_node()
@@ -100,7 +100,7 @@ def read_taxonomy(tax_f):
 	root = TNode('*', [])
 	tax = Taxonomy(tax_f, root)
 
-	with open(tax_f) as f:
+	with open(tax_f, encoding="utf-8") as f:
 		for line in f:
 			node_name, ph_str = line.strip('\r\n').split('\t')
 			node = TNode(node_name, ph_str.split(','))
@@ -145,10 +145,10 @@ def handler(folder, output, N, isa_N, case_N):
 		subset_n = 0
 
 		intru_exp_f = '%s/intrusion_exp_%d.csv' % (output, subset_n)
-		g_exp = open(intru_exp_f, 'w+')
+		g_exp = open(intru_exp_f, 'w+', encoding="utf-8")
 		g_exp.write('0,1,2,3,4,5,outlier id\n')
 		
-		with open(intru_gold_f, 'w+') as g_gold:
+		with open(intru_gold_f, 'w+', encoding="utf-8") as g_gold:
 			idx = 0
 			for exp_str in intru_all:
 				g_exp.write('%s\n' % exp_str)
@@ -159,7 +159,7 @@ def handler(folder, output, N, isa_N, case_N):
 					subset_n += 1
 					intru_exp_f = '%s/intrusion_exp_%d.csv' % (output, subset_n)
 					g_exp.close()
-					g_exp = open(intru_exp_f, 'w+')
+					g_exp = open(intru_exp_f, 'w+', encoding="utf-8")
 					g_exp.write('0,1,2,3,4,5,outlier id\n')
 		g_exp.close()
 
@@ -177,10 +177,10 @@ def handler(folder, output, N, isa_N, case_N):
 		subset_n = 0
 
 		intru_exp_f = '%s/isa_exp_%d.csv' % (output, subset_n)
-		g_exp = open(intru_exp_f, 'w+')
+		g_exp = open(intru_exp_f, 'w+', encoding="utf-8")
 		g_exp.write(',0,1,parent id\n')
 		
-		with open(isa_gold_f, 'w+') as g_gold:
+		with open(isa_gold_f, 'w+', encoding="utf-8") as g_gold:
 			idx = 0
 			for exp_str in intru_all:
 				g_exp.write('%s\n' % exp_str)
@@ -191,7 +191,7 @@ def handler(folder, output, N, isa_N, case_N):
 					subset_n += 1
 					intru_exp_f = '%s/isa_exp_%d.csv' % (output, subset_n)
 					g_exp.close()
-					g_exp = open(intru_exp_f, 'w+')
+					g_exp = open(intru_exp_f, 'w+', encoding="utf-8")
 					g_exp.write(',0,1,parent id\n')
 
 
@@ -207,10 +207,10 @@ def handler(folder, output, N, isa_N, case_N):
 		subset_n = 0
 
 		intru_exp_f = '%s/subdomain_exp_%d.csv' % (output, subset_n)
-		g_exp = open(intru_exp_f, 'w+')
+		g_exp = open(intru_exp_f, 'w+', encoding="utf-8")
 		g_exp.write('child,parent,y or n?\n')
 		
-		with open(sub_gold_f, 'w+') as g_gold:
+		with open(sub_gold_f, 'w+', encoding="utf-8") as g_gold:
 			idx = 0
 			for exp_str in intru_all:
 				g_exp.write('%s\n' % exp_str)
@@ -221,7 +221,7 @@ def handler(folder, output, N, isa_N, case_N):
 					subset_n += 1
 					intru_exp_f = '%s/subdomain_exp_%d.csv' % (output, subset_n)
 					g_exp.close()
-					g_exp = open(intru_exp_f, 'w+')
+					g_exp = open(intru_exp_f, 'w+', encoding="utf-8")
 					g_exp.write('child,parent,y or n?\n')
 
 

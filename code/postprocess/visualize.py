@@ -3,7 +3,7 @@ from graphviz import Digraph
 
 def load_nodes(node_file, min_level=1, max_level=3, prefix_list=['*']):
     nodes = {'*':[]}
-    with open(node_file, 'r') as f:
+    with open(node_file, 'r', encoding="utf-8") as f:
         for line in f:
             items = line.strip().split('\t')
             node_id = items[0]

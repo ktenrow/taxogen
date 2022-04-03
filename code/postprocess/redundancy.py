@@ -5,7 +5,7 @@ from collections import defaultdict
 
 def load_inverted_index(reidx):
     pd_map = defaultdict(set)
-    with open(reidx) as f:
+    with open(reidx, encoding="utf-8") as f:
         for line in f:
             segments = line.strip('\r\n').split('\t')
             doc_ids = segments[1].split(',')
@@ -21,7 +21,7 @@ def get_tax_filenames(dir):
 
 def load_taxonomy(tax_file):
     taxonomy = {}
-    with open(tax_file) as f:
+    with open(tax_file, encoding="utf-8") as f:
         for line in f:
             segments = line.strip('\r\n').split('\t')
             node_name = segments[0]
@@ -55,7 +55,7 @@ def main(idx_file, taxonomy_dir, output_file):
     # print len(inverted_index)
     taxonomy_files = get_tax_filenames(taxonomy_dir)
     print(taxonomy_files)
-    with open(output_file, 'a') as fout:
+    with open(output_file, 'a', encoding="utf-8") as fout:
         for tax_file in taxonomy_files:
             tax = load_taxonomy(tax_file)
             pmi = compute_pmi(inverted_index, tax)

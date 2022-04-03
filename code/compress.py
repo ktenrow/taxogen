@@ -17,7 +17,7 @@ def parse_reidx(reidx_f):
 	pd_map = {}
 	doc_to_ph = {}
 
-	with open(reidx_f) as f:
+	with open(reidx_f, encoding="utf-8") as f:
 		for line in f:
 			segments = line.strip('\r\n').split('\t')
 			doc_ids = segments[1].split(',')
@@ -53,7 +53,7 @@ def get_rep(folder, c_id, N):
 	if exists(ph_f):
 		kw_clus_f = '%s/cluster_keywords.txt' % par_folder
 		kws = set()
-		with open(kw_clus_f) as f:
+		with open(kw_clus_f, encoding="utf-8") as f:
 			for line in f:
 				clus_id, ph = line.strip('\r\n').split('\t')
 				if clus_id == c_id:
@@ -86,7 +86,7 @@ def get_rep(folder, c_id, N):
 		ph_f = '%s/embeddings.txt' % par_folder
 		kw_f = '%s/keywords.txt' % par_folder
 		keywords = set()
-		with open(kw_f) as f:
+		with open(kw_f, encoding="utf-8") as f:
 			for line in f:
 				keywords.add(line.strip('\r\n'))
 
@@ -124,12 +124,12 @@ def get_rep(folder, c_id, N):
 		kw_clus_f = '%s/cluster_keywords.txt' % par_folder
 		docs = []
 		kws = set()
-		with open(d_clus_f) as f:
+		with open(d_clus_f, encoding="utf-8") as f:
 			for line in f:
 				doc_id, clus_id = line.strip('\r\n').split('\t')
 				if clus_id == c_id:
 					docs.append(doc_id)
-		with open(kw_clus_f) as f:
+		with open(kw_clus_, encoding="utf-8"f) as f:
 			for line in f:
 				clus_id, ph = line.strip('\r\n').split('\t')
 				if clus_id == c_id:
@@ -164,7 +164,7 @@ def recursion(root, o_file, N):
 	q = queue.Queue()
 	q.put((root, -1, '*'))
 
-	g = open(o_file, 'w+')
+	g = open(o_file, 'w+', encoding="utf-8")
 
 	while not q.empty():
 		(c_folder, c_id, c_name) = q.get()

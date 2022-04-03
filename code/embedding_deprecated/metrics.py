@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
     queries = []
     query_file = args['query']
-    query_data = open(query_file) 
+    query_data = open(query_file, encoding="utf-8") 
     for line in query_data:
         query = line.split("\n")[0].replace(" ", "_")
         queries.append(query)
@@ -141,7 +141,7 @@ if __name__ == "__main__":
         candidate_file = input_folder + "/" + query + "/author.weights"
         
         scores = dict() 
-        data = open(candidate_file) 
+        data = open(candidate_file, encoding="utf-8") 
         for line in data:
             value = line.split("\n")[0].split()
             scores[value[0]] = float(value[1])
@@ -152,7 +152,7 @@ if __name__ == "__main__":
         expert_file = ground_truth_folder + "/" + query + ".experts"
         experts = set() 
         
-        data = open(expert_file)
+        data = open(expert_file, encoding="utf-8")
         for line in data:
             value = line.split("\n")[0]
             experts.add(value)

@@ -12,7 +12,7 @@ def load_embeddings(embedding_file):
 	if embedding_file is None:
 		return {}
 	word_to_vec = {}
-	with open(embedding_file, 'r') as fin:
+	with open(embedding_file, 'r', encoding="utf-8") as fin:
 		header = fin.readline()
 		for line in fin:
 			items = line.strip().split()

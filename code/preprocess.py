@@ -12,14 +12,14 @@ def get_candidates(folder, o_file):
   quality_phrases = set()
 
   for file in files:
-    with open(file) as f:
+    with open(file, encoding="utf-8") as f:
       for line in f:
         phrase = line.split(' ')[0]
         quality_phrases.add(phrase)
 
   print(('Quality phrase count: ' + str(len(quality_phrases))))
 
-  with open(o_file, 'w+') as g:
+  with open(o_file, 'w+', encoding="utf-8") as g:
     for phrase in quality_phrases:
       g.write('%s\n' % phrase)
 
@@ -33,14 +33,14 @@ def get_reidx_file(text, cand_f, o_file):
   '''
 
   candidates = []
-  with open(cand_f) as f:
+  with open(cand_f, encoding="utf-8") as f:
     for line in f:
       candidates.append(line.strip('\r\n'))
 
   pd_map = {x:set() for x in candidates}
   candidates_set = set(candidates)
 
-  with open(text) as f:
+  with open(text, encoding="utf-8") as f:
     idx = 0
     for line in f:
       tokens = line.strip('\r\n').split(' ')
@@ -51,7 +51,7 @@ def get_reidx_file(text, cand_f, o_file):
       if idx % 10000 == 0:
         print(("[Construct Inverted Index] Parse %s documents" % idx))
 
-  with open(o_file, 'w+') as g:
+  with open(o_file, 'w+', encoding="utf-8") as g:
     for ph in pd_map:
       if len(pd_map[ph]) > 0:
         doc_str = ','.join(pd_map[ph])

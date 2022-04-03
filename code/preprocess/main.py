@@ -48,7 +48,7 @@ def main():
     # segphraseOutput = SegPhraseOutput()
     # cnt = 0
     # start = time.time()
-    # with open(RAW_SEGMENTATION, "r") as fin:
+    # with open(RAW_SEGMENTATION, "r", encoding="utf-8") as fin:
     #     for line in fin:
     #         cnt += 1
     #         # if cnt == 100:
@@ -80,7 +80,7 @@ def main():
     ### Step 3: lower case seged output
     cnt = 0
     output_file_path = "../../data/papers_segphrase_w_unigram_no_hypen.txt"
-    with open(RAW_SEGMENTATION, "r") as fin, open(output_file_path, "w") as fout:
+    with open(RAW_SEGMENTATION, "r", encoding="utf-8") as fin, open(output_file_path, "w", encoding="utf-8") as fout:
         for line in fin:
             cnt += 1
             if cnt % 1000 == 0:
@@ -102,13 +102,13 @@ def main():
     # intput_keyword_path = "../../data/keywords_segphrase_w_unigram.txt"
     # output_keyword_path = "../../data/keywords_segphrase_w_unigram_no_hypen.txt"
     # keywords = set()
-    # with open(intput_keyword_path, "r") as fin:
+    # with open(intput_keyword_path, "r", encoding="utf-8") as fin:
     #     for line in fin:
     #         line = line.strip()
     #         line = re.sub(r"-","_",line)
     #         keywords.add(line)
     # print("Number of deduplicated keywords = ", len(keywords))
-    # with open(output_keyword_path, "w") as fout:
+    # with open(output_keyword_path, "w", encoding="utf-8") as fout:
     #     for keyword in keywords:
     #         fout.write(keyword)
     #         fout.write("\n")

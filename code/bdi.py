@@ -10,7 +10,7 @@ from os.path import isfile, join, isdir, abspath, dirname, basename, exists
 
 def get_clus_keywords(clus_kws_f):
     clus_map = {}
-    with open(clus_kws_f) as f:
+    with open(clus_kws_f, encoding="utf-8") as f:
         for line in f:
             clus_id, ph = line.strip('\r\n').split('\t')
             clus_id = int(clus_id)

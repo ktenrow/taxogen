@@ -68,7 +68,7 @@ class SegPhraseOutput(object):
             print(("[ERROR]: mismatched </phrase> in document: %s" % doc))
 
     def save_phrase_to_pos_sequence(self, output_path=""):
-        with open(output_path, "w") as fout:
+        with open(output_path, "w", encoding="utf-8") as fout:
             for phrase in self.phrase_to_pos_sequence:
                 fout.write(phrase)
                 fout.write("\t")
@@ -76,7 +76,7 @@ class SegPhraseOutput(object):
                 fout.write("\n")
 
     def load_phrase_to_pos_sequence(self, input_path=""):
-        with open(input_path, "r") as fin:
+        with open(input_path, "r", encoding="utf-8") as fin:
             for line in fin:
                 line = line.strip()
                 seg = line.split("\t")
@@ -124,7 +124,7 @@ class SegPhraseOutput(object):
         self.candidate_phrase = candidate_phrase
 
     def save_candidate_phrase(self, output_path=""):
-        with open(output_path, "w") as fout:
+        with open(output_path, "w", encoding="utf-8") as fout:
             for phrase in self.candidate_phrase:
                 fout.write("_".join(phrase.split()))
                 fout.write("\n")

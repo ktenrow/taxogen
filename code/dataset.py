@@ -25,7 +25,7 @@ class DataSet:
         if embedding_file is None:
             return {}
         word_to_vec = {}
-        with open(embedding_file, 'r') as fin:
+        with open(embedding_file, 'r', encoding="utf-8") as fin:
             header = fin.readline()
             for line in fin:
                 items = line.strip().split()
@@ -36,7 +36,7 @@ class DataSet:
 
     def load_documents(self, document_file):
         documents = []
-        with open(document_file, 'r') as fin:
+        with open(document_file, 'r', encoding="utf-8") as fin:
             for line in fin:
                 keywords = line.strip().split()
                 documents.append(keywords)
@@ -52,7 +52,7 @@ class DataSet:
 
     # def load_keywords(self, seed_word_file):
     #     seed_words = []
-    #     with open(seed_word_file, 'r') as fin:
+    #     with open(seed_word_file, 'r', encoding="utf-8") as fin:
     #         for line in fin:
     #             seed_words.append(line.strip())
     #     return seed_words
@@ -70,7 +70,7 @@ class SubDataSet:
 
     def load_keywords(self, keyword_file, full_data):
         keywords = []
-        with open(keyword_file, 'r') as fin:
+        with open(keyword_file, 'r', encoding="utf-8") as fin:
             for line in fin:
                 keyword = line.strip()
                 if keyword in full_data.embeddings:
@@ -111,7 +111,7 @@ class SubDataSet:
 
     def load_doc_ids(self, doc_id_file):
         doc_ids = []
-        with open(doc_id_file, 'r') as fin:
+        with open(doc_id_file, 'r', encoding="utf-8") as fin:
             for line in fin:
                 doc_id = int(line.strip())
                 doc_ids.append(doc_id)
@@ -133,7 +133,7 @@ class SubDataSet:
     def write_cluster_members(self, clus, cluster_file, parent_dir):
         n_cluster = clus.n_cluster
         clusters = clus.clusters  # a dict: cluster id -> keywords
-        with open(cluster_file, 'w') as fout:
+        with open(cluster_file, 'w', encoding="utf-8") as fout:
             for clus_id in range(n_cluster):
                 members = clusters[clus_id]
                 for keyword_id in members:
@@ -146,7 +146,7 @@ class SubDataSet:
             output_file = parent_dir + center_keyword + '/seed_keywords.txt'
             ensure_directory_exist(output_file)
             members = clusters[clus_id]
-            with open(output_file, 'w') as fout:
+            with open(output_file, 'w', encoding="utf-8") as fout:
                 for keyword_id in members:
                     keyword = self.keywords[keyword_id]
                     fout.write(keyword + '\n')
@@ -154,7 +154,7 @@ class SubDataSet:
     def write_cluster_centers(self, clus, parent_description, output_file):
         clus_centers = clus.center_ids
         center_names = []
-        with open(output_file, 'w') as fout:
+        with open(output_file, 'w', encoding="utf-8") as fout:
             for cluster_id, keyword_idx in clus_centers:
                 keyword = self.keywords[keyword_idx]
                 center_names.append(keyword)
@@ -166,7 +166,7 @@ class SubDataSet:
         n_cluster = clus.n_cluster
         keyword_membership = clus.membership  # an array containing the membership of the keywords
         cluster_document_map = defaultdict(list)  # key: cluster id, value: document list
-        with open(output_file, 'w') as fout:
+        with open(output_file, 'w', encoding="utf-8") as fout:
             for idx, doc in zip(self.original_doc_ids, self.documents):
                 doc_membership = self.get_doc_membership(n_cluster, doc, keyword_membership)
                 cluster_id = self.assign_document(doc_membership)
@@ -179,7 +179,7 @@ class SubDataSet:
             output_file = parent_dir + center_keyword + '/doc_ids.txt'
             ensure_directory_exist(output_file)
             doc_ids = cluster_document_map[clus_id]
-            with open(output_file, 'w') as fout:
+            with open(output_file, 'w', encoding="utf-8") as fout:
                 for doc_id in doc_ids:
                     fout.write(str(doc_id) + '\n')
 

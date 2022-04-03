@@ -19,7 +19,7 @@ def handler(folder):
 
 		gold = {}
 		methods = set()
-		with open(intru_gold, 'r') as f:
+		with open(intru_gold, 'r', encoding="utf-8") as f:
 			for line in f:
 				segs = line.strip('\r\n').split('\t')
 				gold[segs[0]] = (segs[1], segs[2])
@@ -34,7 +34,7 @@ def handler(folder):
 			# print idx
 			# print intru_f
 			first = True
-			with open(intru_f) as f:
+			with open(intru_f, encoding="utf-8") as f:
 				for line in f:
 					# print line
 					idx += 1
@@ -63,7 +63,7 @@ def handler(folder):
 
 	# gold = {}
 	# methods = set()
-	# with open(intru_gold, 'r') as f:
+	# with open(intru_gold, 'r', encoding="utf-8") as f:
 	# 	for line in f:
 	# 		segs = line.strip('\r\n').split('\t')
 	# 		gold[segs[0]] = (segs[1], segs[2])
@@ -75,7 +75,7 @@ def handler(folder):
 
 	# for intru_f in files:
 	# 	first = True
-	# 	with open(intru_f) as f:
+	# 	with open(intru_f, encoding="utf-8") as f:
 	# 		for line in f:
 	# 			if first:
 	# 				first = False
@@ -101,7 +101,7 @@ def handler(folder):
 
 	gold = {}
 	methods = set()
-	with open(intru_gold, 'r') as f:
+	with open(intru_gold, 'r', encoding="utf-8") as f:
 		for line in f:
 			segs = line.strip('\r\n').split('\t')
 			gold[segs[0]] = (segs[1], segs[2])
@@ -114,7 +114,7 @@ def handler(folder):
 
 	for intru_f in files:
 		first = True
-		with open(intru_f) as f:
+		with open(intru_f, encoding="utf-8") as f:
 			for line in f:
 				if first:
 					first = False
